@@ -1,0 +1,32 @@
+{
+  "name": "burni-fhir-validator-api",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "api-docs": "node docs/get-swagger.js"
+  },
+  "imports": {
+    "#root/*": "./src/*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/swagger": "^8.8.0",
+    "colorette": "^2.0.20",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.19.2",
+    "file-type": "^18.5.0",
+    "formidable": "^3.5.0",
+    "glob": "^10.3.3",
+    "java-bridge": "^2.3.0",
+    "jsonpath-plus": "^7.2.0",
+    "node-java-fhir-validator": "^0.4.1",
+    "remeda": "^1.23.0",
+    "uid": "^2.0.2"
+  }
+}

@@ -1,0 +1,150 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Title",
+        "description": "Description",
+        "contact": {
+            "name": "Chin-Lin, Lee",
+            "email": "a5566qq2581@gmail.com"
+        },
+        "license": {
+            "name": "MIT"
+        },
+        "version": "0.0.0"
+    },
+    "components": {
+        "schemas": {}
+    },
+    "paths": {
+        "/profile": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "resourceType": {
+                                        "type": "string",
+                                        "enum": [
+                                            "StructureDefinition"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "resourceType"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        },
+        "/igs": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "files": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        },
+                                        "minItems": 1
+                                    }
+                                },
+                                "required": [
+                                    "files"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        },
+        "/igs/from-registry": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "version"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "https://example.com",
+            "description": "Production Server"
+        },
+        {
+            "url": "https://dev.example.com",
+            "description": "Development Server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "service",
+            "description": "Service"
+        }
+    ]
+}
