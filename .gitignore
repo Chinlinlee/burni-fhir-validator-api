@@ -6,3 +6,13 @@
 /node_modules
 
 .env
+
+
+
+/src/data/**
+!/src/data/*/
+
+/src/temp-upload/**
+!/stc/temp-upload/*/
+
+!/**/.gitkeep
