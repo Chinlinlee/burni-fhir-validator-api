@@ -1,31 +1,7 @@
-import { IncomingForm } from "formidable";
 import dotenv from "dotenv";
 import { app } from "./app.js";
-import routesInit from "./routes/index.js";
-import * as R from "remeda";
-import path from "path";
-import { getCurrentDirname } from "./utils/currentModule.js";
-import fastifySwagger from "@fastify/swagger";
-import fs from "fs";
 
 dotenv.config();
-
-
-app.addContentTypeParser(["multipart/form-data"], async (req, payload) => {
-    let formParser = new IncomingForm({
-        uploadDir: path.join(getCurrentDirname(import.meta.url), "./temp-upload"),
-        multiples: true,
-        maxFileSize: 100 * 1024 * 1024 * 1024
-    });
-    const [fields, files] = await formParser.parse(payload);
-    let body = {};
-    body = R.addProp(body, "fields", fields);
-    body = R.merge(body, files);
-    
-    return body;
-});
-
-await routesInit();
 
 app.listen({
     port: process.env.PORT,
