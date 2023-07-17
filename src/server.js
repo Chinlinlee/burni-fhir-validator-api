@@ -5,11 +5,15 @@ import routesInit from "./routes/index.js";
 import * as R from "remeda";
 import path from "path";
 import { getCurrentDirname } from "./utils/currentModule.js";
-import fastifySwagger from "@fastify/swagger";
-import fs from "fs";
+import cors from "@fastify/cors";
 
 dotenv.config();
 
+if (process.env.NODE_ENV !== "production") {
+    app.register(cors, {
+        origin: "*"
+    });
+}
 
 app.addContentTypeParser(["multipart/form-data"], async (req, payload) => {
     let formParser = new IncomingForm({
