@@ -2,7 +2,6 @@ import * as R from "remeda";
 
 import getIg from "#root/controller/ig/getIg.js";
 
-
 import uploadIg from "#root/controller/ig/uploadIg.js";
 import uploadIgSchema from "#root/schemas/uploadIg.schema.js";
 import uploadIgMiddleware from "#root/controller/ig/middleware/uploadIg.middleware.js";
@@ -11,6 +10,7 @@ import uploadIgMiddleware from "#root/controller/ig/middleware/uploadIg.middlewa
 import getIgFromRegistry from "#root/controller/ig/getIgFromRegistry.js";
 import loadIgFromRegistry from "#root/controller/ig/loadIgFromRegistry.js";
 import loadIgFromRegistrySchema from "#root/schemas/loadIgFromRegistry.schema.js";
+import getIgVersion from "#root/controller/ig/getIgVersion.js";
 
 
 /**
@@ -32,6 +32,7 @@ async function igRoute(fastify, options) {
     });
 
     fastify.get("/igs", getIg);
+    fastify.get("/igs/:igName", getIgVersion)
     fastify.post("/igs", {
         schema: uploadIgSchema,
         preHandler: uploadIgMiddleware
