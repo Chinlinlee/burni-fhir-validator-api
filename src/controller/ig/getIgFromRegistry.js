@@ -1,4 +1,3 @@
-import { app } from "#root/app.js";
 import { packageClient } from "#root/fhir-package-client.js";
 
 /**
@@ -25,7 +24,7 @@ async function getIgFromRegistry(req, res) {
 
         res.code(200).send(packageInfos);
     } catch (e) {
-        app.log.error(e);
+        req.log.error(e);
         throw new Error("500 Internal Server Error");
     }
 }

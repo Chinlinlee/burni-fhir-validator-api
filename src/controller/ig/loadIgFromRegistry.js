@@ -1,5 +1,3 @@
-import { app } from "#root/app.js";
-import { packageClient } from "#root/fhir-package-client.js";
 import globalFhirValidator from "#root/fhir-validator-loader.js";
 
 /**
@@ -12,7 +10,7 @@ async function loadIgFromRegistry(req, res) {
         await globalFhirValidator.validator.loadIg(req.body.id, req.body.version);
         res.code(200).send();
     } catch (e) {
-        app.log.error(e);
+        req.log.error(e);
 
         if (e.message.includes("Unable to resolve package")) {
             return res.code(404).send({

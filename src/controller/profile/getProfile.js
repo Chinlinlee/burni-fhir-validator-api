@@ -1,5 +1,4 @@
 import globalFhirValidator from "#root/fhir-validator-loader.js";
-import { app } from "#root/app.js";
 
 /**
  * 
@@ -12,7 +11,7 @@ async function getProfile(req, res) {
         let profiles = await jProfiles.toArray();
         res.code(200).send(profiles);
     } catch(e) {
-        app.log.error(e);
+        req.log.error(e);
         throw new Error("500 Internal Server Error");
     }
 }

@@ -3,7 +3,6 @@ import fsP from "fs/promises";
 import path from "path";
 
 import globalFhirValidator from "#root/fhir-validator-loader.js";
-import { app } from "#root/app.js";
 import { getCurrentDirname } from "#root/utils/currentModule.js";
 import fileExist from "#root/utils/fileExist.js";
 
@@ -21,7 +20,7 @@ async function uploadProfile(req, res) {
         );
         res.code(200).send();
     } catch (e) {
-        app.log.error(e);
+        req.log.error(e);
         throw new Error("500 Internal Server Error");
     }
 }
@@ -37,7 +36,7 @@ async function storeProfile(profileJson) {
     );
 
     if (await fileExist(storeDest)) {
-        app.log.info(`profile ${storeDest} already exists`);
+        req.log.info(`profile ${storeDest} already exists`);
         return;
     }
 

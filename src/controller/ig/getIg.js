@@ -1,7 +1,5 @@
 import globalFhirValidator from "#root/fhir-validator-loader.js";
 import * as R from "remeda";
-import { app } from "#root/app.js";
-
 /**
  * 
  * @param {import("fastify").FastifyRequest} req 
@@ -26,7 +24,7 @@ async function getIg(req, res) {
 
         res.code(200).send(knownIgs);
     } catch(e) {
-        app.log.error(e);
+        req.log.error(e);
         throw new Error("500 Internal Server Error");
     }
 }

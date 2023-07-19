@@ -1,7 +1,6 @@
 import fsP from "fs/promises";
 import path from "path";
 import globalFhirValidator from "#root/fhir-validator-loader.js";
-import { app } from "#root/app.js";
 import { getCurrentDirname } from "#root/utils/currentModule.js";
 import { NpmPackage } from "node-java-fhir-validator/src/java-wrapper-js/org/hl7/fhir/utilities/npm/NpmPackage.js";
 import { JByteArrayInputStream } from "#root/java/java-instance.js";
@@ -24,7 +23,7 @@ async function uploadIg(req, res) {
             if (!await isIgExist(id, version)) {
                 loadedIgs.push(await loadIg(filename));
             } else {
-                app.log.info(`ig: ${id}, version: ${version} already exist, delete temp file`);
+                req.log.info(`ig: ${id}, version: ${version} already exist, delete temp file`);
                 await fsP.unlink(filename);
                 loadedIgs.push({
                     id,
@@ -36,7 +35,7 @@ async function uploadIg(req, res) {
 
         return res.code(200).send(loadedIgs);
     } catch (e) {
-        app.log.error(e);
+        req.log.error(e);
         throw new Error("500 Internal Server Error");
     }
 }
