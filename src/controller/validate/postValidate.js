@@ -8,7 +8,7 @@ import globalFhirValidator from "#root/fhir-validator-loader.js";
  */
 async function validateResource(req, res) {
     try {
-        let operationOutcomeStr = await globalFhirValidator.validate(JSON.stringify(req.body));
+        let operationOutcomeStr = await globalFhirValidator.validate(JSON.stringify(req.body, null, 2));
         res.code(200).send(JSON.parse(operationOutcomeStr));
     } catch (e) {
         req.log.error(e);
