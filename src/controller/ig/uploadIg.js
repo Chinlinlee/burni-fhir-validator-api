@@ -55,9 +55,9 @@ async function isIgExist(id, version) {
     }
 }
 
-async function loadIg(file, isExist=false) {
+async function loadIg(file) {
     try {
-        let { id, version } = await globalFhirValidator.validator.loadPackage(
+        let { id, version } = await globalFhirValidator.loadPackage(
             await fsP.readFile(file)
         );
 

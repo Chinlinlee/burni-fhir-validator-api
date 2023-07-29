@@ -8,8 +8,8 @@ import globalFhirValidator from "#root/fhir-validator-loader.js";
  */
 async function validateResource(req, res) {
     try {
-        let operationOutcomeStr = await globalFhirValidator.validate(JSON.stringify(req.body, null, 2));
-        res.code(200).send(JSON.parse(operationOutcomeStr));
+        let operationOutcome = await globalFhirValidator.validate(JSON.stringify(req.body, null, 2));
+        res.code(200).send(operationOutcome);
     } catch (e) {
         req.log.error(e);
         throw new Error("500 Internal Server Error");

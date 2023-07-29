@@ -15,7 +15,7 @@ async function uploadProfile(req, res) {
     try {
         await storeProfile(req.body);
 
-        await globalFhirValidator.validator.loadProfile(
+        await globalFhirValidator.loadProfile(
             Buffer.from(JSON.stringify(req.body), "utf8")
         );
         res.code(200).send();

@@ -7,7 +7,7 @@ import globalFhirValidator from "#root/fhir-validator-loader.js";
  */
 async function loadIgFromRegistry(req, res) {
     try {
-        await globalFhirValidator.validator.loadIg(req.body.id, req.body.version);
+        await globalFhirValidator.loadIg(req.body.id, req.body.version);
         res.code(200).send();
     } catch (e) {
         req.log.error(e);

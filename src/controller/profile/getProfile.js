@@ -7,8 +7,7 @@ import globalFhirValidator from "#root/fhir-validator-loader.js";
  */
 async function getProfile(req, res) {
     try {
-        let jProfiles = await globalFhirValidator.validator.getStructures();
-        let profiles = await jProfiles.toArray();
+        let profiles = await globalFhirValidator.getStructures();
         res.code(200).send(profiles);
     } catch(e) {
         req.log.error(e);

@@ -9,12 +9,11 @@ let globalFhirValidator;
 
 export default await (async () => {
     try {
-        globalFhirValidator = new FhirValidator(
-            path.join(getCurrentDirname(import.meta.url), "./data/igs")
-        );
+        globalFhirValidator = new FhirValidator({
+            igDir: path.join(getCurrentDirname(import.meta.url), "./data/igs")
+        });
 
         if (process.env.NODE_ENV !== "docs") {
-            await globalFhirValidator.init();
             await loadProfiles();
         }
 
@@ -36,7 +35,7 @@ async function loadProfiles() {
     try {
         for (let i = 0 ; i < profiles.length; i++) {
             let profile = profiles[i];
-            await globalFhirValidator.validator.loadProfile(
+            await globalFhirValidator.loadProfile(
                 await fsP.readFile(profile)
             );
         }
